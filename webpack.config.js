@@ -63,6 +63,10 @@ module.exports = {
                 // css-loader reads the content of css files and returns it, nothing more
                 // sass-loader converts sass to css
                 use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
+            }, 
+            {
+                test: /\.hbs$/,
+                use: [ 'handlebars-loader' ]
             }
         ]
     },
@@ -77,9 +81,8 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'Hello world',
-            meta: {
-                description: 'Some description'
-            }
+            template: 'src/index.hbs',
+            description: 'Some description'
         })
     ]
 }

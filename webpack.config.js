@@ -13,7 +13,14 @@ module.exports = {
         rules: [
             {
                 test: /\.(png|jpg)$/,
-                type: 'asset/resource'
+                // webpack determines by itself how to treat the image if you just put 'asset' here instead of 'asset/resource' or 'asset/inline'
+                type: 'asset',
+                // parser prop can determine the magic number when to use asset/resource and when asset/inline
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 3 * 1024 // 3 kilobytes
+                    }
+                }
             }
         ]
     }

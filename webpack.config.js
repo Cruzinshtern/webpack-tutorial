@@ -1,5 +1,6 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -28,25 +29,43 @@ module.exports = {
                 test: /\.txt/,
                 type: 'asset/source'
             },
+            // {
+            //     // necessary to import css files into js
+            //     test: /\.css$/,
+            //     // css-loader reads the content of css files and returns it, nothing more
+            //     // style-loader takes css content and injects it with help of style tags
+            //     // NOTE: order is important, starts right and goes left
+            //     use: [ 'style-loader', 'css-loader' ]
+            // },
             {
                 // necessary to import css files into js
                 test: /\.css$/,
                 // css-loader reads the content of css files and returns it, nothing more
-                // style-loader takes css content and injects it with help of style tags
                 // NOTE: order is important, starts right and goes left
-                use: [ 'style-loader', 'css-loader' ]
+                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
             },
+            // {
+            //     // necessary to import scss files into js
+            //     test: /\.scss$/,
+            //     // css-loader reads the content of css files and returns it, nothing more
+            //     // style-loader takes css content and injects it with help of style tags
+            //     // sass-loader converts sass to css
+            //     use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+            // }
             {
                 // necessary to import scss files into js
                 test: /\.scss$/,
                 // css-loader reads the content of css files and returns it, nothing more
-                // style-loader takes css content and injects it with help of style tags
                 // sass-loader converts sass to css
-                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+                use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader' ]
             }
         ]
     },
     plugins: [
-        new TerserPlugin()
+        new TerserPlugin(),
+        // Extract css into separate file
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        })
     ]
 }

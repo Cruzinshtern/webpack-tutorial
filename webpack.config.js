@@ -5,7 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
+        // [contenthash] is necessary to create a new file with a ceratin hash whenever there is a change in the file
+        filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, './dist'),
         //publicPath is default to value 'auto' in webpack 5, but it used to be ''
         publicPath: 'dist/'
@@ -65,7 +66,8 @@ module.exports = {
         new TerserPlugin(),
         // Extract css into separate file
         new MiniCssExtractPlugin({
-            filename: 'styles.css'
+            // [contenthash] is necessary to create a new file with a ceratin hash whenever there is a change in the file
+            filename: 'styles.[contenthash].css'
         })
     ]
 }

@@ -21,7 +21,9 @@ module.exports = {
     mode: 'production',
     optimization: {
         splitChunks: {
-            chunks: 'all'
+            chunks: 'all',
+            // if a third party lib is less then 30 KB webpack will not create a separate bundle for it, minSize can manipulate that size 
+            minSize: 3000
         }
     },
     module: {

@@ -15,7 +15,7 @@ module.exports = {
         publicPath: '',
         // clean: true // doest the same as CleanWebpackPlugin but has less functionality
     },
-    mode: 'none',
+    mode: 'development',
     module: {
         rules: [
             {

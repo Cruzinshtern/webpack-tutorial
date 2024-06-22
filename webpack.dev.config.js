@@ -4,10 +4,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        'hello-world': './src/hello-world.js',
+        'kiwi': './src/kiwi.js',
+    },
     output: {
         // [contenthash] is necessary to create a new file with a ceratin hash whenever there is a change in the file
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, './dist'),
         //publicPath is default to value 'auto' in webpack 5, but it used to be ''
         // value is set to be '' on purpose because now we use index.html from dist folder
@@ -70,9 +73,19 @@ module.exports = {
         // this plugin cleans the output folder removing unnecessary files
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
+            filename: 'hello-world.html',
+            chunks: ['hello-world'],
             title: 'Hello world',
-            template: 'src/index.hbs',
-            description: 'Some description'
-        })
+            template: 'src/page-template.hbs',
+            description: 'Hello world'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'kiwi.html',
+            chunks: ['kiwi'],
+            title: 'Kiwi',
+            template: 'src/page-template.hbs',
+            description: 'Kiwi'
+        }),
+        
     ]
 }

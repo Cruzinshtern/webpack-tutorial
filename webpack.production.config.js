@@ -4,10 +4,14 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        'hello-world': './src/hello-world.js',
+        'kiwi': './src/kiwi.js',
+    },
     output: {
         // [contenthash] is necessary to create a new file with a ceratin hash whenever there is a change in the file
-        filename: 'bundle.[contenthash].js',
+        // [name] takes values from entry object
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, './dist'),
         //publicPath is default to value 'auto' in webpack 5, but it used to be ''
         // value is set to be '' on purpose because now we use index.html from dist folder
@@ -73,7 +77,7 @@ module.exports = {
         // Extract css into separate file more useful in prod environment
         new MiniCssExtractPlugin({
             // [contenthash] is necessary to create a new file with a ceratin hash whenever there is a change in the file
-            filename: 'styles.[contenthash].css'
+            filename: '[name].[contenthash].css'
         }),
         // this plugin cleans the output folder removing unnecessary files
         new CleanWebpackPlugin(),

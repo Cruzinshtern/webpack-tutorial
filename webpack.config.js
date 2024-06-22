@@ -26,6 +26,13 @@ module.exports = {
                 // this is necessary to treat txt files as plain text files
                 test: /\.txt/,
                 type: 'asset/source'
+            },
+            {
+                // necessary to import css files into js
+                test: /\.css$/,
+                // css-loader reads the content of css files and returns it, nothing more
+                // style-loader takes css content and injects it with help of style tags
+                use: [ 'style-loader', 'css-loader' ]
             }
         ]
     }

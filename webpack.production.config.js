@@ -82,9 +82,22 @@ module.exports = {
         // this plugin cleans the output folder removing unnecessary files
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
+            filename: 'hello-world.html',
+            // chunks names are taken from entry object
+            chunks: ['hello-world'],
             title: 'Hello world',
-            template: 'src/index.hbs',
-            description: 'Some description'
+            template: 'src/page-template.hbs',
+            description: 'Hello world',
+            minify: false
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'kiwi.html',
+            // chunks names are taken from entry object
+            chunks: ['kiwi'],
+            title: 'Kiwi',
+            template: 'src/page-template.hbs',
+            description: 'Kiwi',
+            minify: false
         })
     ]
 }

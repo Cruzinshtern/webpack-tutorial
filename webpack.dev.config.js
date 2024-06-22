@@ -15,6 +15,17 @@ module.exports = {
         // clean: true // doest the same as CleanWebpackPlugin but has less functionality
     },
     mode: 'development',
+    // this is necessary to develop faster, we create a server where when we make a change to code we can see the changes right away, without reloading the page
+    devServer: {
+        port: 9000,
+        static: {
+            directory: path.resolve(__dirname, './dist')
+        },
+        devMiddleware: {
+            index: 'index.html',
+            writeToDisk: true
+        }
+    },
     module: {
         rules: [
             {

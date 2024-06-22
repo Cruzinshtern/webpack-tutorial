@@ -6,6 +6,8 @@ const helloWorldButton = new HelloWorldButton();
 helloWorldButton.render(); 
 const heading = new Heading();
 heading.render();
+const heading2 = new Heading();
+heading2.render();
 // addImage();
 
 if (process.env.NODE_ENV === 'production') {

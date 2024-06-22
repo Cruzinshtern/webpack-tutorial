@@ -2,6 +2,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -10,7 +11,8 @@ module.exports = {
         filename: 'bundle.[contenthash].js',
         path: path.resolve(__dirname, './dist'),
         //publicPath is default to value 'auto' in webpack 5, but it used to be ''
-        publicPath: 'dist/',
+        // value is set to be '' on purpose because now we use index.html from dist folder
+        publicPath: '',
         // clean: true // doest the same as CleanWebpackPlugin but has less functionality
     },
     mode: 'none',
@@ -72,6 +74,7 @@ module.exports = {
             filename: 'styles.[contenthash].css'
         }),
         // this plugin cleans the output folder removing unnecessary files
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin()
     ]
 }

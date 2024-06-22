@@ -32,7 +32,16 @@ module.exports = {
                 test: /\.css$/,
                 // css-loader reads the content of css files and returns it, nothing more
                 // style-loader takes css content and injects it with help of style tags
+                // NOTE: order is important, starts right and goes left
                 use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                // necessary to import scss files into js
+                test: /\.scss$/,
+                // css-loader reads the content of css files and returns it, nothing more
+                // style-loader takes css content and injects it with help of style tags
+                // sass-loader converts sass to css
+                use: [ 'style-loader', 'css-loader', 'sass-loader' ]
             }
         ]
     }

@@ -19,6 +19,11 @@ module.exports = {
         // clean: true // doest the same as CleanWebpackPlugin but has less functionality
     },
     mode: 'production',
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    },
     module: {
         rules: [
             {

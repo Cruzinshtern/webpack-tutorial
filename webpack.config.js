@@ -21,6 +21,11 @@ module.exports = {
                         maxSize: 3 * 1024 // 3 kilobytes
                     }
                 }
+            },
+            {
+                // this is necessary to treat txt files as plain text files
+                test: /\.txt/,
+                type: 'asset/source'
             }
         ]
     }

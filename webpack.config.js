@@ -75,6 +75,11 @@ module.exports = {
         }),
         // this plugin cleans the output folder removing unnecessary files
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            title: 'Hello world',
+            meta: {
+                description: 'Some description'
+            }
+        })
     ]
 }
